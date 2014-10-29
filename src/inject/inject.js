@@ -1,4 +1,4 @@
-chrome.extension.sendMessage({}, function(response) {
+
 	var readyStateCheckInterval = setInterval(function() {
 	if (document.readyState === "complete") {
 		clearInterval(readyStateCheckInterval);
@@ -6,7 +6,7 @@ chrome.extension.sendMessage({}, function(response) {
 		// ----------------------------------------------------------
 		// This part of the script triggers when page is done loading
 		fartscroll = function(trigger_distance) {
-    trigger_distance = trigger_distance || 400;
+    trigger_distance = trigger_distance || 600;
 
     var mp3_prefix = "data:audio/mp3;base64,SUQzAwAAAAALClRJVDIAAABkAAAAAAAAAGQgRWZmZWN0cyAtIENvbWVkeS9DYXJ0b29uIEZBUlQ";
     var mp3s = [
@@ -41,13 +41,13 @@ chrome.extension.sendMessage({}, function(response) {
         player_container.id = "fartscroll";
         document.getElementsByTagName('body')[0].appendChild(player_container);
     }
-    
+
     function getplayer() {
         var players = player_container.getElementsByTagName("audio");
         for (var i=0;i<players.length;i++) {
             if (players[i].currentTime === 0 || players[i].ended) {
                 return players[i];
-            } 
+            }
         }
         // All the current players are busy, let's make a new one!
         var newPlayer = document.createElement("audio");
@@ -66,7 +66,7 @@ chrome.extension.sendMessage({}, function(response) {
         prefix = ogg_prefix;
     }
     var lastOffset;
-    
+
     window.onscroll = function() {
         var scrollOffset = Math.floor(window.scrollY / trigger_distance);
         if (lastOffset !== scrollOffset) {
@@ -82,5 +82,4 @@ fartscroll();
 		// ----------------------------------------------------------
 
 	}
-	}, 10);
-});
+}, 4000);
